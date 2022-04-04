@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">FoodDrink</string>
+    <string name="Slogan">Eat drink now Another matter for later</string>
+    <string name="title_activity_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="google_maps_key">AIzaSyBu86Xy64zcwMiKCLbsDbjPHQ9iG_5TBh0</string>
+    <string name="title_activity_test_main">TestMainActivity</string>
+    <string name="title_activity_bottom">BottomActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="permission_title">QUYỀN ỨNG DỤNG</string>
+    <string name="permission_detail">Ứng dụng cần được cấp nhiều quyền hơn.</string>
+    <string name="action_permission">CẤP QUYỀN</string>
+    <string name="action_cancel">HỦY</string>
+
+    <string name="error_msg_unknown">Đã xảy ra lỗi không mong muốn</string>
+    <string name="error_msg_no_internet">Vui lòng kiểm tra kết nối và thử lại.</string>
+    <string name="error_msg">Rất tiếc! không thể tải dữ liệu</string>
+    <string name="title_error_msg">LỖI</string>
+    <string name="title_info_msg">THÔNG TIN</string>
+    <string name="title_vote_employee">Đánh giá nhân viên</string>
+    <string name="noresult_msg">Không tìm thấy kết quả</string>
+
+    <string name="dialog_btn_ok">ĐỒNG Ý</string>
+</resources>
