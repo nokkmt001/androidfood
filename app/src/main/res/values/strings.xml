@@ -32,4 +32,6 @@
     <string name="noresult_msg">Không tìm thấy kết quả</string>
 
     <string name="dialog_btn_ok">ĐỒNG Ý</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

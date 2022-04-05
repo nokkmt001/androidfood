@@ -17,12 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDrink">
         <activity
-            android:name=".ViewHolder.TestMainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.FoodDrink.NoActionBar">
-
-        </activity>
-        <activity
             android:name=".ui.base.map.MapActivity"
             android:exported="false" />
         <activity
@@ -34,21 +28,23 @@
             android:exported="false"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".Home"
+            android:name=".HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.FoodDrink.NoActionBar" />
         <activity
             android:name=".SignUp"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SignIn"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="fullSensor">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
