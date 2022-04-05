@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+
+import com.bumptech.glide.Glide;
 import com.example.fooddrink.Model.Category;
 import com.example.fooddrink.R;
 import com.example.fooddrink.ViewHolder.MenuViewHolder;
@@ -33,6 +36,7 @@ public class FoodMainFragment extends BaseFragment<FragmentFoodMainBinding> {
     protected void initView() {
         database = FirebaseDatabase.getInstance();
         category = database.getReference("Category");
+        binding.recyclerFood.setLayoutManager(new GridLayoutManager(getContext(),2));
     }
 
     @Override
@@ -43,9 +47,12 @@ public class FoodMainFragment extends BaseFragment<FragmentFoodMainBinding> {
             protected void populateViewHolder(MenuViewHolder menuViewHolder, Category category, int i) {
                 menuViewHolder.txtMenuName.setText(category.getName());
                 Picasso.get().load(category.getImage()).into(menuViewHolder.imageView);
-                //Picasso.get().load().into(menuViewHolder.imageView);
+                Glide.with(getContext())
+                        .load(category.getImage())
+                        .error(R.drawable.img_no_image)
+                        .into(menuViewHolder.imageView);
                 Category clickItem = category;
-                menuViewHolder.setInternClickListener((view, position, isLongCick) -> {
+                menuViewHolder.setInternClickListener((view, position, isLongCLick) -> {
 
                     //get categoryId and send to new Activity
 //                    Intent foodList = new Intent(this, FoodList.class);

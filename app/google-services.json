@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "206359597565",
-    "project_id": "fooddrink-b08bb",
-    "storage_bucket": "fooddrink-b08bb.appspot.com"
+    "project_number": "245191874956",
+    "project_id": "fooddrink-4797d",
+    "storage_bucket": "fooddrink-4797d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:206359597565:android:3817d872e73efa6709c994",
+        "mobilesdk_app_id": "1:245191874956:android:2e803c2cd6ee17eea15ea9",
         "android_client_info": {
           "package_name": "com.example.fooddrink"
         }
       },
       "oauth_client": [
         {
-          "client_id": "206359597565-e4gih21u01bsllb2sotjbc20og6noivm.apps.googleusercontent.com",
+          "client_id": "245191874956-oau3s937m3v6qaijb74qhbjab99rgvvf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.fooddrink",
-            "certificate_hash": "96f27f287687599ec463b75bff892a9a67e746ed"
+            "certificate_hash": "c6549239c2ad6f5d504a30fbc7ed146dda62d252"
           }
         },
         {
-          "client_id": "206359597565-55q4t14vfraofdad05j20pk5e20pr1fe.apps.googleusercontent.com",
+          "client_id": "245191874956-39qn6ma174lot3dneai11e1jvalekp8h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAUDSsZxpJeIQ99jhBml9mQnO_xLS9j4DI"
+          "current_key": "AIzaSyBxkELew7fNoAthU9IX350HPMO8Jp8PM0Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "206359597565-55q4t14vfraofdad05j20pk5e20pr1fe.apps.googleusercontent.com",
+              "client_id": "245191874956-39qn6ma174lot3dneai11e1jvalekp8h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -34,4 +34,9 @@
     <string name="dialog_btn_ok">ĐỒNG Ý</string>
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="number_phone_default">0981751114</string>
+    <string name="hint_input_number_phone">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="pass_default">123456</string>
+    <string name="text_sign_in">Sign In</string>
 </resources>

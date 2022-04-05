@@ -6,10 +6,37 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#316934</color>
-    <color name="white">#4CAF50</color>
+    <color name="color_main">#4CAF50</color>
 
-    <color name="mauchu">#FDFCFC</color>
+    <color name="text_color">#FDFCFC</color>
+
+    <color name="de_fault">#ffffff</color>
 
     <color name="overLayBackground">#7EA896</color>
     <color name="overActionBar">#0e0d0e</color>
+
+    <color name="Black">#000000</color>
+    <color name="Red">#f44336</color>
+    <color name="Red_red">#ff0000</color>
+
+    <color name="Pink">#e91e63</color>
+    <color name="Purple">#9c27b0</color>
+    <color name="Deep_Purple">#673ab7</color>
+    <color name="Indigo">#3f51b5</color>
+    <color name="Blue">#2196f3</color>
+    <color name="Light_Blue">#03a9f4</color>
+    <color name="Cyan">#00bcd4</color>
+    <color name="Teal">#009688</color>
+    <color name="Green">#4caf50</color>
+    <color name="Light_Green">#8bc34a</color>
+    <color name="Lime">#cddc39</color>
+    <color name="Yellow">#ffeb3b</color>
+    <color name="Amber">#ffc107</color>
+    <color name="Orange">#f15a24</color>
+    <color name="Orange2">#ff9800</color>
+    <color name="Deep_Orange">#ff5722</color>
+    <color name="Brown">#795548</color>
+    <color name="Grey">#9e9e9e</color>
+    <color name="Blue_Grey">#607d8b</color>
+    <color name="Blue_App">#3a7be6</color>
 </resources>

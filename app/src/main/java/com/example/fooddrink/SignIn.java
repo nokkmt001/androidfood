@@ -30,9 +30,9 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        edtPassword = (MaterialEditText) findViewById(R.id.edtPassword);
-        edtPhone    = (MaterialEditText) findViewById(R.id.edtPhone);
-        btnSignIn   = (Button) findViewById(R.id.btnSingIn);
+        edtPassword = findViewById(R.id.edtPassword);
+        edtPhone    = findViewById(R.id.edtPhone);
+        btnSignIn   = findViewById(R.id.btnSingIn);
 
         // init firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();

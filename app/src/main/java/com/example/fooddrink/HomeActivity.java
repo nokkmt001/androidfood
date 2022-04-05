@@ -1,5 +1,7 @@
 package com.example.fooddrink;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,12 +12,15 @@ import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
 import com.example.fooddrink.Model.Category;
 import com.example.fooddrink.ViewHolder.MenuViewHolder;
 import com.example.fooddrink.ViewHolder.ui.home.HomeFragment;
+import com.example.fooddrink.database.PublicData;
 import com.example.fooddrink.databinding.ActivityHomeBinding;
 import com.example.fooddrink.ui.base.BaseTestActivity;
 import com.example.fooddrink.ui.food.FoodDetailFragment;
+import com.example.fooddrink.ui.food.FoodMainFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
@@ -25,22 +30,19 @@ import com.squareup.picasso.Picasso;
 public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
     DatabaseReference category;
-    Fragment fmActive, fragment1, fragment2,fragment3;
+    Fragment fmActive, fragment1, fragment2, fragment3;
     FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
-    public HomeFragment homeFragment;
+    public FoodMainFragment homeFragment;
     public FoodDetailFragment galleryFragment;
     FragmentManager fmManager;
 
     public void gg() {
         fmManager = getSupportFragmentManager();
-
-        homeFragment = new HomeFragment();
+        homeFragment = new FoodMainFragment();
         galleryFragment = new FoodDetailFragment("");
-
         //init firebase
         database = FirebaseDatabase.getInstance();
         category = database.getReference("Category");
-
         binding.navView.setNavigationItemSelectedListener(this);
         binding.layoutHeader.imageDrawer.setOnClickListener(this);
         LoadMenu();
@@ -88,44 +90,19 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
 //        recycler_menu.setAdapter(adapter);
     }
 
-    protected void addFragment(@IdRes int containerViewId,
-                               @NonNull Fragment fragment,
-                               @NonNull String fragmentTag) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(containerViewId, fragment, fragmentTag)
-                .disallowAddToBackStack()
-                .commit();
-    }
-
-    protected void replaceFragment(@IdRes int containerViewId,
-                                   @NonNull Fragment fragment,
-                                   @NonNull String fragmentTag,
-                                   @Nullable String backStackStateName) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(containerViewId, fragment, fragmentTag)
-                .addToBackStack(backStackStateName)
-                .commit();
-    }
-
     public void setBottomNavigationView(Fragment fmMain, Fragment fragment, String tab) {
         try {
             if (fmMain == null) {
-                fmMain = fragment;
                 if (fmActive != null) {
                     fmManager.beginTransaction().hide(fmActive).commit();
                     if (fmActive != fragment) {
-//                        fmManager.beginTransaction().add(R.id.frame_container, fragment, tab).hide(fmActive).commit();
                         fmManager.beginTransaction().add(R.id.frame_container, fragment, tab).commit();
                     }
                 } else {
                     fmManager.beginTransaction().add(R.id.frame_container, fragment, tab).commit();
                 }
             } else {
-            fmManager.beginTransaction().hide(fmActive).show(fmMain).commit();
-                //hide(fmActive).show(fmMain)
-                fmMain = fragment;
+                fmManager.beginTransaction().hide(fmActive).show(fmMain).commit();
             }
             fmActive = fragment;
         } catch (Exception ignored) {
@@ -145,28 +122,32 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         binding.drawerLayout.closeDrawer(GravityCompat.START);
         switch (menuItem.getItemId()) {
             case R.id.nav_menu:
                 setBottomNavigationView(fragment1, homeFragment, "1");
-//                fragment = homeFragment;
                 fragment1 = homeFragment;
                 break;
             case R.id.nav_cart:
                 setBottomNavigationView(fragment2, galleryFragment, "2");
-                fragment1 = galleryFragment;
+                fragment2 = galleryFragment;
                 break;
             case R.id.nav_orders:
-//                Intent intent = new Intent(MainActivity.this, SendMailMultiServiceReportActivity.class);
-//                startActivity(intent);
                 break;
             case R.id.nav_log_out:
-//                fragmentClass = PhieuYeuCauListFragment.class;
+                alertDialog("ĐĂNG XUẤT", "Bạn có chắc muốn đăng xuất ứng dụng?",
+                        "ĐĂNG XUẤT", null, (dialogInterface, i) -> {
+                            PublicData.clear();
+                            Intent intent = new Intent(this, SignIn.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+                        });
                 break;
             default:
-//                fragment = homeFragment;
                 break;
         }
         return true;
