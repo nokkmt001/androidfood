@@ -1,8 +1,8 @@
 package com.example.fooddrink.Model;
 
 public class Category {
-    private String Name;
-    private String Image;
+    public String Name;
+    public String Image;
 
     public Category() {
     }

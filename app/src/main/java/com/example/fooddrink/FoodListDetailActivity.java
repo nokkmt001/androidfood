@@ -1,51 +1,55 @@
 package com.example.fooddrink;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddrink.Interface.InternClickListener;
 import com.example.fooddrink.Model.Food;
 import com.example.fooddrink.ViewHolder.FoodViewHolder;
+import com.example.fooddrink.databinding.ActivityFoodListBinding;
+import com.example.fooddrink.ui.base.BaseTestActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-public class FoodList extends AppCompatActivity {
-
+public class FoodListDetailActivity extends BaseTestActivity<ActivityFoodListBinding> {
     RecyclerView recyclerView;
-
     FirebaseDatabase database;
     DatabaseReference foodList;
-    String categoryId = "";
-
+    String categoryId = "", categoryName = "";
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_list);
+    public ActivityFoodListBinding getViewBinding() {
+        return ActivityFoodListBinding.inflate(getLayoutInflater());
+    }
 
-        //firebase
+    @Override
+    protected void initView() {
         database = FirebaseDatabase.getInstance();
         foodList = database.getReference("Food");
-        recyclerView  = (RecyclerView) findViewById(R.id.recycler_food);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView = (RecyclerView) findViewById(R.id.recycler_food);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //get intent here
-        if (getIntent() != null){
+        if (getIntent() != null) {
             categoryId = getIntent().getStringExtra("CategoryId");
-            System.out.println(categoryId +".............................................");
+            categoryName = getIntent().getStringExtra("CategoryName");
+            if (categoryName !=null){
+
+            }
+            System.out.println(categoryId + ".............................................");
         }
-        if (!categoryId.isEmpty() && categoryId != null)
-        {
+        if (!categoryId.isEmpty() && categoryId != null) {
             loadListFood(categoryId);
-            System.out.println(categoryId +">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            System.out.println(categoryId + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         }
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     private void loadListFood(String categoryId) {
@@ -61,16 +65,15 @@ public class FoodList extends AppCompatActivity {
                 Picasso.get().load(food.getImage()).into(foodViewHolder.food_image);
 
                 Food local = food;
-                foodViewHolder.setInternClickListener(new InternClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongCick) {
-                        Toast.makeText(FoodList.this,"" + local.getName(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                foodViewHolder.setInternClickListener((view, position, isLongCick) -> Toast.makeText(FoodListDetailActivity.this, "" + local.getName(), Toast.LENGTH_SHORT).show());
             }
         };
         //set adapter
-        recyclerView.setAdapter(adapter);
+        binding.recyclerFood.setAdapter(adapter);
+    }
+
+    @Override
+    public void onClick(View view) {
 
     }
 }

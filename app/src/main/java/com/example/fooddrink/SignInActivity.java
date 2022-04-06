@@ -18,9 +18,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class SignIn extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
     EditText edtPhone, edtPassword;
     Button btnSignIn;
@@ -38,7 +37,7 @@ public class SignIn extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference table_user = database.getReference("User");
         btnSignIn.setOnClickListener(view -> {
-            ProgressDialog mdialog = new ProgressDialog(SignIn.this);
+            ProgressDialog mdialog = new ProgressDialog(SignInActivity.this);
             mdialog.setMessage("Please waiting...!");
             mdialog.show();
             table_user.addValueEventListener(new ValueEventListener() {
@@ -52,16 +51,16 @@ public class SignIn extends AppCompatActivity {
                         if (user.getPassword().equals(edtPassword.getText().toString())) {
                             AppPreference.setUser(edtPhone.getText().toString());
                             AppPreference.setUserPass(edtPassword.getText().toString());
-                            Intent homeIntent = new Intent(SignIn.this, HomeActivity.class);
+                            Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
                             Common.currentUser = user;
                             startActivity(homeIntent);
                             finish();
                         } else {
-                            Toast.makeText(SignIn.this, "Sign In failed! Please check phone number or password", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignInActivity.this, "Sign In failed! Please check phone number or password", Toast.LENGTH_LONG).show();
                         }
                     }else {
                         mdialog.dismiss();
-                        Toast.makeText(SignIn.this,"User not exist in database", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignInActivity.this,"User not exist in database", Toast.LENGTH_LONG).show();
                     }
                 }
                 @Override

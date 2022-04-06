@@ -7,11 +7,20 @@ import android.preference.PreferenceManager;
 public class AppPreference {
     public static final String PREF_USER_ID = "user_login_id";
     public static final String PREF_USER_PASS = "user_login_pass";
+    public static final String PREF_IS_LOGIN = "is_login";
+
 
     private static SharedPreferences sharedPreferences;
 
     public AppPreference(Context mContext) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+    }
+    public static boolean isLogin() {
+        return sharedPreferences.getBoolean(PREF_IS_LOGIN, false);
+    }
+
+    public static void setLogin(boolean status) {
+        sharedPreferences.edit().putBoolean(PREF_IS_LOGIN, status).apply();
     }
 
     public static String getUser() {

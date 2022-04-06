@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class SignUp extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     MaterialEditText edtPhone, edtName, edtPassword;
     Button btnSingUp;
@@ -39,7 +39,7 @@ public class SignUp extends AppCompatActivity {
         btnSingUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProgressDialog mdialog = new ProgressDialog(SignUp.this);
+                ProgressDialog mdialog = new ProgressDialog(SignUpActivity.this);
                 mdialog.setMessage("Please waiting...!");
                 mdialog.show();
                 table_user.addValueEventListener(new ValueEventListener() {
@@ -49,14 +49,14 @@ public class SignUp extends AppCompatActivity {
                         if (snapshot.child(edtPhone.getText().toString()).exists())
                         {
                             mdialog.dismiss();
-                            Toast.makeText(SignUp.this,"Phone Number Already Register",Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignUpActivity.this,"Phone Number Already Register",Toast.LENGTH_LONG).show();
                         }
                         else
                         {
                             mdialog.dismiss();
                             User user = new User(edtName.getText().toString(),edtPassword.getText().toString());
                             table_user.child(edtPhone.getText().toString()).setValue(user);
-                            Toast.makeText(SignUp.this,"Sign Up Successfully",Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignUpActivity.this,"Sign Up Successfully",Toast.LENGTH_LONG).show();
                             finish();
                         }
                     }

@@ -1,21 +1,17 @@
 package com.example.fooddrink;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.fooddrink.Model.Category;
 import com.example.fooddrink.ViewHolder.MenuViewHolder;
-import com.example.fooddrink.ViewHolder.ui.home.HomeFragment;
 import com.example.fooddrink.database.PublicData;
 import com.example.fooddrink.databinding.ActivityHomeBinding;
 import com.example.fooddrink.ui.base.BaseTestActivity;
@@ -80,7 +76,7 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
                 Category clickItem = category;
                 menuViewHolder.setInternClickListener((view, position, isLongCick) -> {
                     //get categoryId and send to new Activity
-                    Intent foodList = new Intent(HomeActivity.this, FoodList.class);
+                    Intent foodList = new Intent(HomeActivity.this, FoodListDetailActivity.class);
                     //Because CategoryId is key, so we just get key of this item
                     foodList.putExtra("CategoryId", adapter.getRef(position).getKey());
                     startActivity(foodList);
@@ -141,7 +137,7 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
                 alertDialog("ĐĂNG XUẤT", "Bạn có chắc muốn đăng xuất ứng dụng?",
                         "ĐĂNG XUẤT", null, (dialogInterface, i) -> {
                             PublicData.clear();
-                            Intent intent = new Intent(this, SignIn.class);
+                            Intent intent = new Intent(this, SignInActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
@@ -151,5 +147,21 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            alertDialog(getString(R.string.title_exits), getString(R.string.title_detail_exits),
+                    getString(R.string.dialog_btn_ok), null,
+                    (dialogInterface, i) -> {
+                        moveTaskToBack(true);
+                        finishAffinity();
+                        PublicData.clear();
+                    });
+        }
     }
 }

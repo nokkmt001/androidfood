@@ -17,14 +17,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDrink">
         <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".ui.base.map.MapActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".FoodDetail"
             android:exported="false"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".FoodList"
+            android:name=".FoodListDetailActivity"
             android:exported="false"
             android:screenOrientation="fullSensor" />
         <activity
@@ -34,13 +39,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.FoodDrink.NoActionBar" />
         <activity
-            android:name=".SignUp"
+            android:name=".SignUpActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".SignIn"
+            android:name=".SignInActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -50,7 +55,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <meta-data

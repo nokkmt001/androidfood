@@ -1,5 +1,6 @@
 package com.example.fooddrink.ui.food;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.bumptech.glide.Glide;
+import com.example.fooddrink.FoodListDetailActivity;
 import com.example.fooddrink.Model.Category;
 import com.example.fooddrink.R;
 import com.example.fooddrink.ViewHolder.MenuViewHolder;
@@ -18,8 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 public class FoodMainFragment extends BaseFragment<FragmentFoodMainBinding> {
     FirebaseDatabase database;
     DatabaseReference foodList;
@@ -29,7 +29,7 @@ public class FoodMainFragment extends BaseFragment<FragmentFoodMainBinding> {
     FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
     @Override
     public FragmentFoodMainBinding getViewBinding(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return FragmentFoodMainBinding.inflate(inflater);
+        return FragmentFoodMainBinding.inflate(inflater, container, false);
     }
 
     @Override
@@ -53,7 +53,14 @@ public class FoodMainFragment extends BaseFragment<FragmentFoodMainBinding> {
                         .into(menuViewHolder.imageView);
                 Category clickItem = category;
                 menuViewHolder.setInternClickListener((view, position, isLongCLick) -> {
+//                    StartFoodList(adapter.getRef(position).getKey());
+                    Intent foodList = new Intent(getContext(), FoodListDetailActivity.class);
+                    //Because CategoryId is key, so we just get key of this item
 
+                    foodList.putExtra("CategoryId", adapter.getRef(position).getKey());
+                    foodList.putExtra("CategoryName", clickItem.getName());
+
+                    startActivity(foodList);
                     //get categoryId and send to new Activity
 //                    Intent foodList = new Intent(this, FoodList.class);
                     //Because CategoryId is key, so we just get key of this item
@@ -70,9 +77,11 @@ public class FoodMainFragment extends BaseFragment<FragmentFoodMainBinding> {
 
     }
 
-    private void StartFullProduct() {
+    private void StartFoodList(String categoryId) {
+        FoodDetailFragment fragment = new FoodDetailFragment(categoryId);
         getActivity().getSupportFragmentManager().beginTransaction()
-                .add(R.id.frame_container, null, "three")
+//                .add(R.id.frame_container, null, "three")
+                .replace(R.id.frame_container, fragment)
                 .hide(this)
                 .addToBackStack(null)
                 .commit();
