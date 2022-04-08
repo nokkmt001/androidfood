@@ -11,6 +11,7 @@ import com.example.fooddrink.Interface.InternClickListener;
 import com.example.fooddrink.Model.Food;
 import com.example.fooddrink.R;
 import com.example.fooddrink.ViewHolder.FoodViewHolder;
+import com.example.fooddrink.database.PublicData;
 import com.example.fooddrink.databinding.FragmentFoodDetailBinding;
 import com.example.fooddrink.ui.base.BaseFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -41,7 +42,7 @@ public class FoodDetailFragment extends BaseFragment<FragmentFoodDetailBinding> 
 
     @Override
     protected void initView() {
-        database = FirebaseDatabase.getInstance();
+        database = PublicData.database ;
         foodList = database.getReference("Food");
         binding.recyclerFood.setLayoutManager(new GridLayoutManager(getContext(),2));
         if (categoryId != null) {

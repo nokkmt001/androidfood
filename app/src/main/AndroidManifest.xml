@@ -17,15 +17,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDrink">
         <activity
+            android:name=".ui.booking.BookingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.cart.CartActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.splash.SplashActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.base.map.MapActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".FoodDetail"
+            android:name=".FoodDetailActivity"
             android:exported="false"
             android:screenOrientation="fullSensor" />
         <activity
@@ -49,13 +61,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

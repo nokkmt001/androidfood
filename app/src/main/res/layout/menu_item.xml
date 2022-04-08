@@ -14,8 +14,8 @@
             android:id="@+id/menu_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
             android:background="#4f0e0d0e"
+            android:scaleType="centerCrop"
             android:src="@drawable/bg" />
 
         <TextView

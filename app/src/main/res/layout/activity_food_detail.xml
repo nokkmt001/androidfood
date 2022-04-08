@@ -1,41 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FoodDetail">
+    android:orientation="vertical"
+    tools:context=".FoodDetailActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <ImageView
-            android:id="@+id/img_food"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@null"
-            android:scaleType="centerCrop" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:title="Food Name" />
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    <include layout="@layout/layout_header_back" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnCart"
@@ -46,7 +18,6 @@
         android:elevation="6dp"
         android:src="@drawable/ic_baseline_shopping_cart_24"
         android:visibility="gone"
-        app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom"
         app:pressedTranslationZ="12dp"
         app:useCompatPadding="true" />
@@ -54,7 +25,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -62,6 +33,120 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageMain"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/layoutCountBuy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/layoutButton"
+                        android:layout_margin="@dimen/dp_5"
+                        app:layout_constraintBottom_toTopOf="@+id/layoutButton"
+                        android:visibility="visible"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageMinus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/dp_5"
+                            android:layout_marginEnd="@dimen/dp_5"
+                            android:layout_toStartOf="@+id/textCountBuy"
+                            android:padding="@dimen/dp_5"
+                            android:src="@drawable/ic_minus" />
+
+                        <TextView
+                            android:id="@+id/textCountBuy"
+                            style="@style/Widget.AppCompat.TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="@dimen/dp_5"
+                            android:layout_marginTop="@dimen/dp_5"
+                            android:layout_marginEnd="@dimen/dp_5"
+                            android:layout_marginBottom="@dimen/dp_5"
+                            android:gravity="center"
+                            android:minWidth="@dimen/dp_50"
+                            android:text="1"
+                            android:textSize="@dimen/textSize_16"
+                            android:textColor="@color/Red_red"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageAdd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/dp_5"
+                            android:layout_marginEnd="@dimen/dp_5"
+                            android:layout_toEndOf="@+id/textCountBuy"
+                            android:padding="@dimen/dp_5"
+                            android:src="@drawable/ic_add" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnAddCart"
+                            style="@style/TextAppearance.AppCompat.Button"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/dp_2"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_button"
+                            android:gravity="top|center"
+                            android:minHeight="@dimen/dp_35"
+                            android:paddingTop="@dimen/dp_2"
+                            android:text="@string/title_add"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/textSize_20"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnBuyNow"
+                            style="@style/TextAppearance.AppCompat.Button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_2"
+                            android:layout_weight="1"
+                            android:gravity="top|center"
+                            android:minHeight="@dimen/dp_35"
+                            android:paddingTop="@dimen/dp_2"
+                            android:background="@drawable/custom_button"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/textSize_20"
+                            android:textStyle="bold"
+                            android:text="@string/buy" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -74,16 +159,35 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/food_name"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:padding="12dp"
-                        android:text="Food Name"
-                        android:textColor="#0A270A"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/food_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:padding="12dp"
+                            android:text="@string/title_food_detail"
+                            android:textColor="#0A270A"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/textName"
+                            style="@style/Widget.AppCompat.TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:padding="12dp"
+                            android:text="Food Name"
+                            android:textColor="#0A270A"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/layout_price"
@@ -94,20 +198,78 @@
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@drawable/ic_baseline_attach_money_24" />
 
                         <TextView
-                            android:id="@+id/food_price"
+                            android:id="@+id/textPrice"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_weight="9"
                             android:padding="12dp"
-                            android:text="1.000"
                             android:textColor="#0A270A"
                             android:textSize="18sp"
                             android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="9"
+                            android:paddingStart="12dp"
+                            android:text="@string/text_discount"
+                            android:textColor="#0A270A"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textDiscount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="9"
+                            android:paddingStart="12dp"
+                            android:textColor="#0A270A"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="9"
+                            android:paddingStart="12dp"
+                            android:text="Mô tả"
+                            android:textColor="#0A270A"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="9"
+                            android:paddingStart="12dp"
+                            android:textColor="#0A270A"
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -119,4 +281,4 @@
 
     </androidx.core.widget.NestedScrollView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

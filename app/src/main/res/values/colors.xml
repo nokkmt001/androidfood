@@ -11,6 +11,7 @@
     <color name="text_color">#FDFCFC</color>
 
     <color name="de_fault">#ffffff</color>
+    <color name="colorLine">#C0C0C0</color>
 
     <color name="overLayBackground">#7EA896</color>
     <color name="overActionBar">#0e0d0e</color>

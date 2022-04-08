@@ -1,66 +1,57 @@
 package com.example.fooddrink;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.fooddrink.Common.Common;
 import com.example.fooddrink.Model.User;
 import com.example.fooddrink.database.AppPreference;
+import com.example.fooddrink.database.PublicData;
+import com.example.fooddrink.databinding.ActivitySignInBinding;
+import com.example.fooddrink.ui.base.BaseTestActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class SignInActivity extends AppCompatActivity {
-
-    EditText edtPhone, edtPassword;
-    Button btnSignIn;
+public class SignInActivity extends BaseTestActivity<ActivitySignInBinding> {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+    public ActivitySignInBinding getViewBinding() {
+        return ActivitySignInBinding.inflate(getLayoutInflater());
+    }
 
-        edtPassword = findViewById(R.id.edtPassword);
-        edtPhone    = findViewById(R.id.edtPhone);
-        btnSignIn   = findViewById(R.id.btnSingIn);
-
-        // init firebase
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+    @Override
+    protected void initView() {
+        FirebaseDatabase database = PublicData.database ;
         DatabaseReference table_user = database.getReference("User");
-        btnSignIn.setOnClickListener(view -> {
-            ProgressDialog mdialog = new ProgressDialog(SignInActivity.this);
-            mdialog.setMessage("Please waiting...!");
-            mdialog.show();
+        binding.btnSingIn.setOnClickListener(view -> {
             table_user.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange( @NonNull DataSnapshot snapshot) {
                     //check if user not exist in database
-                    if (snapshot.child(edtPhone.getText().toString()).exists()) {
+                    if (snapshot.child(binding.edtPhone.getText().toString()).exists()) {
                         //get user info
-                        mdialog.dismiss();
-                        User user = snapshot.child(edtPhone.getText().toString()).getValue(User.class);
-                        if (user.getPassword().equals(edtPassword.getText().toString())) {
-                            AppPreference.setUser(edtPhone.getText().toString());
-                            AppPreference.setUserPass(edtPassword.getText().toString());
+                        User user = snapshot.child(binding.edtPhone.getText().toString()).getValue(User.class);
+                        assert user != null;
+                        if (user.getPassword().equals(binding.edtPassword.getText().toString())) {
+                            AppPreference.setLogin(true);
+                            AppPreference.setUserPhone(binding.edtPhone.getText().toString());
+                            AppPreference.setUserPass(binding.edtPassword.getText().toString());
+                            // save to sharedPreferences
                             Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
-                            Common.currentUser = user;
+                            PublicData.currentUser = user;
+                            AppPreference.saveUserMain(user);
+                            // save user current in to cache for uses another class
                             startActivity(homeIntent);
                             finish();
                         } else {
-                            Toast.makeText(SignInActivity.this, "Sign In failed! Please check phone number or password", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignInActivity.this, R.string.title_sign_in_failed, Toast.LENGTH_LONG).show();
                         }
                     }else {
-                        mdialog.dismiss();
-                        Toast.makeText(SignInActivity.this,"User not exist in database", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignInActivity.this, R.string.title_user_not_exist, Toast.LENGTH_LONG).show();
                     }
                 }
                 @Override
@@ -69,5 +60,15 @@ public class SignInActivity extends AppCompatActivity {
                 }
             });
         });
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

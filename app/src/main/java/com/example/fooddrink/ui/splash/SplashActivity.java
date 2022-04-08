@@ -13,7 +13,9 @@ import com.example.fooddrink.Common.Common;
 import com.example.fooddrink.HomeActivity;
 import com.example.fooddrink.MainActivity;
 import com.example.fooddrink.Model.User;
+import com.example.fooddrink.R;
 import com.example.fooddrink.database.AppPreference;
+import com.example.fooddrink.database.PublicData;
 import com.example.fooddrink.databinding.ActivitySplashBinding;
 import com.example.fooddrink.ui.base.BaseTestActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -35,12 +37,12 @@ public class SplashActivity extends BaseTestActivity<ActivitySplashBinding> {
 
     @Override
     protected void initView() {
-        database = FirebaseDatabase.getInstance();
+        database = PublicData.database ;
         table_user = database.getReference("User");
 
         new Handler().postDelayed(() -> {
             if (AppPreference.isLogin()) {
-                numberPhone = AppPreference.getUser();
+                numberPhone = AppPreference.getUserPhone();
                 pass = AppPreference.getUserPass();
                 showCheck();
             } else {
@@ -70,18 +72,19 @@ public class SplashActivity extends BaseTestActivity<ActivitySplashBinding> {
                 if (snapshot.child(numberPhone).exists()) {
                     //get user info
                     User user = snapshot.child(numberPhone).getValue(User.class);
+                    assert user != null;
                     if (user.getPassword().equals(pass)) {
-                        AppPreference.setUser(numberPhone);
+                        AppPreference.setUserPhone(numberPhone);
                         AppPreference.setUserPass(pass);
                         Intent homeIntent = new Intent(SplashActivity.this, HomeActivity.class);
-                        Common.currentUser = user;
+                        PublicData.currentUser = user;
                         startActivity(homeIntent);
                         finish();
                     } else {
-                        Toast.makeText(SplashActivity.this, "Sign In failed! Please check phone number or password", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SplashActivity.this, R.string.title_sign_in_failed, Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(SplashActivity.this, "User not exist in database", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SplashActivity.this,  R.string.title_user_not_exist,  Toast.LENGTH_LONG).show();
                 }
             }
 

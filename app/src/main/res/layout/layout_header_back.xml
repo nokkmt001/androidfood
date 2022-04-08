@@ -16,6 +16,10 @@
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/imageCart"
+        style="@style/Widget.AppCompat.TextView"
+        android:textColor="@color/de_fault"
         android:layout_toEndOf="@+id/imageDrawer"/>
 
     <androidx.appcompat.widget.AppCompatImageView

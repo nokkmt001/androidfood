@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fooddrink.Model.User;
+import com.example.fooddrink.database.PublicData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
         btnSingUp   = (Button) findViewById(R.id.btnSingUp);
 
         // init firebase
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = PublicData.database ;
         DatabaseReference table_user = database.getReference("User");
 
         btnSingUp.setOnClickListener(new View.OnClickListener() {

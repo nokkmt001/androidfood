@@ -52,7 +52,7 @@
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:text="Sign Up"
-            android:textSize="20dp"
+            android:textSize="@dimen/textSize_20"
             android:textStyle="bold"
             />
         <Button
@@ -64,7 +64,7 @@
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:text="Sign In"
-            android:textSize="20dp"
+            android:textSize="@dimen/textSize_20"
             android:textStyle="bold"
             />
 

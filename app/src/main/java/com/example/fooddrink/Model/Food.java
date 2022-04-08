@@ -1,8 +1,13 @@
 package com.example.fooddrink.Model;
 
-public class Food {
+import java.io.Serializable;
+
+public class Food implements Serializable {
     private String Name, Image, Description, Price, Discount, MenuId;
 
+    private String FoodID;
+
+    private Integer count;
     public Food() {
     }
 
@@ -61,5 +66,21 @@ public class Food {
 
     public void setMenuId(String menuId) {
         MenuId = menuId;
+    }
+
+    public String getFoodID() {
+        return FoodID;
+    }
+
+    public void setFoodID(String foodID) {
+        FoodID = foodID;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

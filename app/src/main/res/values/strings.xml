@@ -41,4 +41,21 @@
     <string name="text_sign_in">Sign In</string>
     <string name="title_exits">THOÁT ỨNG DỤNG</string>
     <string name="title_detail_exits">Bạn có chắc muốn thoát ứng dụng?</string>
+    <string name="title_sign_in_failed">Sign In failed! Please check phone number or password</string>
+    <string name="title_user_not_exist">User not exist in database</string>
+    <string name="title_food_detail">Food Name</string>
+    <string name="text_discount">Giảm giá</string>
+    <string name="buy">Mua ngay</string>
+    <string name="title_add">Thêm</string>
+
+    <string name="title_empty_product">Sản phẩm hiện đang hết hàng</string>
+    <string name="base_count">Tạm tính</string>
+    <string name="cost_transport">Phí vận chuyển</string>
+    <string name="total_money">Tổng tiền</string>
+    <string name="text_order">Đặt hàng</string>
+    <string name="cart">Giỏ hàng</string>
+
+    <string name="vnd">đ</string>
+    <string name="title_empty_cart">Giỏ hàng trống</string>
+
 </resources>

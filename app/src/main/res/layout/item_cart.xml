@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize">
+
+    <RelativeLayout
+        android:id="@+id/layoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/imageMinus">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_5"
+            android:src="@drawable/img_no_image" />
+
+        <TextView
+            android:id="@+id/textTitle"
+            style="@style/Widget.AppCompat.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_5"
+            android:textStyle="bold"
+            android:layout_toEndOf="@+id/imageLogo" />
+
+        <TextView
+            android:id="@+id/textPrice"
+            style="@style/Widget.AppCompat.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textTitle"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_toEndOf="@+id/imageLogo"
+            android:textColor="@color/Red_red" />
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:padding="@dimen/dp_5"
+        android:src="@drawable/ic_add" />
+
+    <TextView
+        android:id="@+id/textCount"
+        style="@style/Widget.AppCompat.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:minWidth="@dimen/dp_50"
+        android:gravity="center"
+        android:layout_toStartOf="@+id/imageAdd"
+        android:textColor="@color/Red_red" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageMinus"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:layout_toStartOf="@+id/textCount"
+        android:padding="@dimen/dp_5"
+        android:src="@drawable/ic_minus" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_05"
+        android:layout_alignParentBottom="true"
+        android:background="@color/Black" />
+
+</RelativeLayout>

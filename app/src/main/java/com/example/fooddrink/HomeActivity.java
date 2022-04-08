@@ -37,11 +37,11 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
         homeFragment = new FoodMainFragment();
         galleryFragment = new FoodDetailFragment("");
         //init firebase
-        database = FirebaseDatabase.getInstance();
+        database = PublicData.database ;
         category = database.getReference("Category");
         binding.navView.setNavigationItemSelectedListener(this);
         binding.layoutHeader.imageDrawer.setOnClickListener(this);
-        LoadMenu();
+//        LoadMenu();
         setCheckDefault();
     }
 
@@ -73,7 +73,7 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
                 menuViewHolder.txtMenuName.setText(category.getName());
                 Picasso.get().load(category.getImage()).into(menuViewHolder.imageView);
                 //Picasso.get().load().into(menuViewHolder.imageView);
-                Category clickItem = category;
+//                Category clickItem = category;
                 menuViewHolder.setInternClickListener((view, position, isLongCick) -> {
                     //get categoryId and send to new Activity
                     Intent foodList = new Intent(HomeActivity.this, FoodListDetailActivity.class);
