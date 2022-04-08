@@ -1,72 +1,90 @@
 package com.example.fooddrink;
 
-import android.app.ProgressDialog;
-import android.os.Bundle;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fooddrink.Model.User;
 import com.example.fooddrink.database.PublicData;
+import com.example.fooddrink.databinding.ActivitySignUpBinding;
+import com.example.fooddrink.ui.base.BaseTestActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class SignUpActivity extends AppCompatActivity {
+import java.util.Objects;
 
-    MaterialEditText edtPhone, edtName, edtPassword;
-    Button btnSingUp;
+public class SignUpActivity extends BaseTestActivity<ActivitySignUpBinding> {
+    @Override
+    public ActivitySignUpBinding getViewBinding() {
+        return ActivitySignUpBinding.inflate(getLayoutInflater());
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+    public void onClick(View view) {
 
-        edtName     = (MaterialEditText) findViewById(R.id.edtName);
-        edtPassword = (MaterialEditText) findViewById(R.id.edtPassword);
-        edtPhone    = (MaterialEditText) findViewById(R.id.edtPhone);
-        btnSingUp   = (Button) findViewById(R.id.btnSingUp);
+    }
 
-        // init firebase
-        FirebaseDatabase database = PublicData.database ;
+    @Override
+    protected void initView() {
+        super.initView();
+        FirebaseDatabase database = PublicData.database;
         DatabaseReference table_user = database.getReference("User");
 
-        btnSingUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ProgressDialog mdialog = new ProgressDialog(SignUpActivity.this);
-                mdialog.setMessage("Please waiting...!");
-                mdialog.show();
-                table_user.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        // check if already user phone
-                        if (snapshot.child(edtPhone.getText().toString()).exists())
-                        {
-                            mdialog.dismiss();
-                            Toast.makeText(SignUpActivity.this,"Phone Number Already Register",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            mdialog.dismiss();
-                            User user = new User(edtName.getText().toString(),edtPassword.getText().toString());
-                            table_user.child(edtPhone.getText().toString()).setValue(user);
-                            Toast.makeText(SignUpActivity.this,"Sign Up Successfully",Toast.LENGTH_LONG).show();
-                            finish();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+        binding.btnSingUp.setOnClickListener(view -> {
+            if (TextUtils.isEmpty(binding.inputPhone.getText())) {
+                showInfo("Bạn chưa nhập mật khẩu");
+                return;
             }
+            if (TextUtils.isEmpty(binding.inputPassword.getText())) {
+                showInfo("Bạn chưa nhập mật khẩu");
+                return;
+            }
+            if (TextUtils.isEmpty(binding.inputName.getText())) {
+                showInfo("Bạn chưa nhập mật khẩu");
+                return;
+            }
+            if (TextUtils.isEmpty(binding.inputAddress.getText())) {
+                showInfo("Bạn chưa nhập mật khẩu");
+                return;
+            }
+            showProgressDialog(true);
+            table_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    // check if already user phone
+                    showProgressDialog(false);
+                    String sdt = Objects.requireNonNull(binding.inputPhone.getText()).toString();
+                    if (snapshot.child(sdt).exists()) {
+                        showToast(getString(R.string.error_phone_is_exits));
+                    } else {
+                        User user = new User(Objects.requireNonNull(binding.inputName.getText()).toString(),
+                                Objects.requireNonNull(binding.inputPassword.getText()).toString(),
+                                Objects.requireNonNull(binding.inputAddress.getText()).toString());
+                        table_user.child(sdt).setValue(user);
+                        showToast(getString(R.string.title_sign_up_success));
+                        startMain();
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    showProgressDialog(false);
+                    showToast(error.getMessage());
+                }
+            });
         });
+
+    }
+
+    private void startMain(){
+        Intent intent = new Intent(this,MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

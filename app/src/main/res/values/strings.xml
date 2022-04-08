@@ -57,5 +57,10 @@
 
     <string name="vnd">đ</string>
     <string name="title_empty_cart">Giỏ hàng trống</string>
+    <string name="user_name">Tên người dùng</string>
+    <string name="title_address">Địa chỉ</string>
+    <string name="error_phone_is_exits">Phone Number Already Register</string>
+    <string name="title_sign_up_success">Sign Up Successfully</string>
+    <string name="title_button_sign_in">Sign Up</string>
 
 </resources>

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
 import com.example.fooddrink.Model.User;
 import com.example.fooddrink.database.AppPreference;
 import com.example.fooddrink.database.PublicData;
@@ -25,15 +26,17 @@ public class SignInActivity extends BaseTestActivity<ActivitySignInBinding> {
 
     @Override
     protected void initView() {
-        FirebaseDatabase database = PublicData.database ;
+        FirebaseDatabase database = PublicData.database;
         DatabaseReference table_user = database.getReference("User");
         binding.btnSingIn.setOnClickListener(view -> {
+            showProgressDialog(true);
             table_user.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange( @NonNull DataSnapshot snapshot) {
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
                     //check if user not exist in database
                     if (snapshot.child(binding.edtPhone.getText().toString()).exists()) {
                         //get user info
+                        showProgressDialog(false);
                         User user = snapshot.child(binding.edtPhone.getText().toString()).getValue(User.class);
                         assert user != null;
                         if (user.getPassword().equals(binding.edtPassword.getText().toString())) {
@@ -50,13 +53,15 @@ public class SignInActivity extends BaseTestActivity<ActivitySignInBinding> {
                         } else {
                             Toast.makeText(SignInActivity.this, R.string.title_sign_in_failed, Toast.LENGTH_LONG).show();
                         }
-                    }else {
+                    } else {
+                        showProgressDialog(false);
                         Toast.makeText(SignInActivity.this, R.string.title_user_not_exist, Toast.LENGTH_LONG).show();
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError Error) {
-
+                    showProgressDialog(false);
                 }
             });
         });

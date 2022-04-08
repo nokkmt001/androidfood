@@ -31,7 +31,6 @@ public class FoodDetailActivity extends BaseTestActivity<ActivityFoodDetailBindi
 
     @Override
     protected void initView() {
-
         binding.imageAdd.setOnClickListener(view12 -> {
             count = count + 1;
             binding.textCountBuy.setText(count.toString());
@@ -67,15 +66,22 @@ public class FoodDetailActivity extends BaseTestActivity<ActivityFoodDetailBindi
             if (key == null) return;
             food.setFoodID(key);
             PublicData.listDataFoodBookingNow.add(food);
-                Intent intent = new Intent(this, CartActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+            Intent intent = new Intent(this, CartActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
+
+        binding.layoutHeader.imageCart.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CartActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
+        binding.layoutHeader.imageDrawer.setOnClickListener(view -> finish());
     }
 
     @Override
     protected void initData() {
-        database = PublicData.database ;
+        database = PublicData.database;
 
         Bundle bundle = getIntent().getExtras();
         food = (Food) bundle.getSerializable("ITEM");

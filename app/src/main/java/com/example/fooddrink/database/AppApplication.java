@@ -12,7 +12,7 @@ public class AppApplication extends Application {
     public void onCreate() {
         super.onCreate();
         new AppPreference(this);
-        PublicData.database = FirebaseDatabase.getInstance();
+        PublicData.database = FirebaseDatabase.getInstance("https://fooddrink-4797d-default-rtdb.asia-southeast1.firebasedatabase.app");
         Hawk.init(this).build();
     }
 }

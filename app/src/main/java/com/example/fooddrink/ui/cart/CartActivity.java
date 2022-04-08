@@ -5,6 +5,8 @@ import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.fooddrink.Model.Food;
+import com.example.fooddrink.R;
 import com.example.fooddrink.database.AppPreference;
 import com.example.fooddrink.database.PublicData;
 import com.example.fooddrink.databinding.ActivityCartBinding;
@@ -21,7 +23,7 @@ public class CartActivity extends BaseTestActivity<ActivityCartBinding> {
 
     @Override
     protected void initView() {
-        adapter = new CartAdapter();
+        adapter = new CartAdapter(this);
         binding.rylCart.setLayoutManager(new LinearLayoutManager(this));
         binding.rylCart.setAdapter(adapter);
         binding.buttonOK.setOnClickListener(view -> {
@@ -30,6 +32,29 @@ public class CartActivity extends BaseTestActivity<ActivityCartBinding> {
             Intent intent = new Intent(this, BookingActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+        });
+
+        adapter.setOnClick((view, position) -> {
+            Food info = adapter.getItem(position);
+            Integer count = info.getCount();
+            switch (view.getId()) {
+                case R.id.imageAdd:
+                    count = count + 1;
+                    info.setCount(count);
+                    adapter.remoteItem(position);
+                    adapter.add(info, position);
+                    break;
+                case R.id.imageMinus:
+                    count = count - 1;
+                    info.setCount(count);
+                    adapter.remoteItem(position);
+                    if (count != 0) {
+                        adapter.add(info, position);
+                    }
+                    break;
+                default:
+                    break;
+            }
         });
     }
 

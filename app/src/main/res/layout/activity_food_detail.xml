@@ -7,7 +7,8 @@
     android:orientation="vertical"
     tools:context=".FoodDetailActivity">
 
-    <include layout="@layout/layout_header_back" />
+    <include android:id="@+id/layoutHeader"
+        layout="@layout/layout_header_back" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnCart"
@@ -34,11 +35,25 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageMain"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_margin="5dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_no_image"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="H,16:9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,8 +72,8 @@
                         android:layout_height="wrap_content"
                         android:layout_above="@+id/layoutButton"
                         android:layout_margin="@dimen/dp_5"
-                        app:layout_constraintBottom_toTopOf="@+id/layoutButton"
                         android:visibility="visible"
+                        app:layout_constraintBottom_toTopOf="@+id/layoutButton"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -85,8 +100,8 @@
                             android:gravity="center"
                             android:minWidth="@dimen/dp_50"
                             android:text="1"
-                            android:textSize="@dimen/textSize_16"
                             android:textColor="@color/Red_red"
+                            android:textSize="@dimen/textSize_16"
                             android:textStyle="bold" />
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -106,9 +121,9 @@
                         android:id="@+id/layoutButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_5"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:orientation="horizontal">
+                        android:layout_margin="@dimen/dp_5"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent">
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btnAddCart"
@@ -133,14 +148,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dp_2"
                             android:layout_weight="1"
+                            android:background="@drawable/custom_button"
                             android:gravity="top|center"
                             android:minHeight="@dimen/dp_35"
                             android:paddingTop="@dimen/dp_2"
-                            android:background="@drawable/custom_button"
+                            android:text="@string/buy"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/textSize_20"
-                            android:textStyle="bold"
-                            android:text="@string/buy" />
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 

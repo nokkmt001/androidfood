@@ -3,13 +3,15 @@ package com.example.fooddrink.Model;
 public class User {
     private String Name;
     private String Password;
+    private String address;
 
     public User() {
     }
 
-    public User(String name, String password) {
-        Name = name;
-        Password = password;
+    public User(String name, String password, String address) {
+        this.Name = name;
+        this.Password = password;
+        this.address = address;
     }
 
     public String getName() {
@@ -26,5 +28,13 @@ public class User {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

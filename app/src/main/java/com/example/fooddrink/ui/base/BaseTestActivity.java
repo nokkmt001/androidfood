@@ -1,11 +1,13 @@
 package com.example.fooddrink.ui.base;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
@@ -18,10 +20,13 @@ import androidx.viewbinding.ViewBinding;
 
 import com.example.fooddrink.R;
 
+import java.util.Objects;
+
 public abstract class BaseTestActivity<T extends ViewBinding> extends AppCompatActivity implements View.OnClickListener {
     private final int REQUEST_MULTIPLE_PERMISSIONS = 100;
     String[] permissionsMain = {};
     protected T binding;
+    Dialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,9 +41,9 @@ public abstract class BaseTestActivity<T extends ViewBinding> extends AppCompatA
 
     public abstract T getViewBinding();
 
-    protected abstract void initView();
+    protected void initView() {}
 
-    protected abstract void initData();
+    protected void initData() {}
 
     public <N extends View> N bind(int id) {
         return findViewById(id);
@@ -75,6 +80,21 @@ public abstract class BaseTestActivity<T extends ViewBinding> extends AppCompatA
                 {
                     ActivityCompat.requestPermissions(this, permissionsRequired, REQUEST_MULTIPLE_PERMISSIONS);
                 }
+            }
+        }
+    }
+
+    public void showProgressDialog(boolean isShow) {
+        if (isShow) {
+            progressDialog = new Dialog(this);
+            progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            Objects.requireNonNull(progressDialog.getWindow()).setBackgroundDrawableResource(R.color.colorTransparent);
+            progressDialog.setCancelable(false);
+            progressDialog.setContentView(R.layout.dialog_progressbar_waiting);
+            progressDialog.show();
+        } else {
+            if (progressDialog != null) {
+                progressDialog.dismiss();
             }
         }
     }

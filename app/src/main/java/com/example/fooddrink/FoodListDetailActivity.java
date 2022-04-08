@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fooddrink.Model.Food;
@@ -18,7 +17,6 @@ import com.example.fooddrink.ui.cart.CartActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 public class FoodListDetailActivity extends BaseTestActivity<ActivityFoodListBinding> {
     FirebaseDatabase database;
@@ -62,19 +60,20 @@ public class FoodListDetailActivity extends BaseTestActivity<ActivityFoodListBin
     private void loadListFood(String categoryId) {
         System.out.println(">.......................");
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,
-                R.layout.food_item,
+                R.layout.item_food,
                 FoodViewHolder.class,
                 foodList.orderByChild("MenuId").equalTo(categoryId) //like: select * from Foods where MenuId =
         ) {
             @Override
-            protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
-                foodViewHolder.food_name.setText(food.getName());
+            protected void populateViewHolder(FoodViewHolder holder, Food food, int i) {
+                holder.food_name.setText(food.getName());
+                holder.textPrice.setText(food.getPrice());
 //                Picasso.get().load(food.getImage()).into(foodViewHolder.food_image);
                 Glide.with(FoodListDetailActivity.this)
                         .load(food.getImage())
                         .error(R.drawable.img_no_image)
-                        .into(foodViewHolder.food_image);
-                foodViewHolder.setInternClickListener((view, position, isLongCick) -> {
+                        .into(holder.food_image);
+                holder.setInternClickListener((view, position, isLongCick) -> {
                             Toast.makeText(FoodListDetailActivity.this, "" + food.getName(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(FoodListDetailActivity.this, FoodDetailActivity.class);
                             Bundle bundle = new Bundle();

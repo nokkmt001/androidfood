@@ -62,7 +62,7 @@ public class FoodDetailFragment extends BaseFragment<FragmentFoodDetailBinding> 
 
     private void loadListFood(String categoryId) {
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,
-                R.layout.food_item,
+                R.layout.item_food,
                 FoodViewHolder.class,
                 foodList.orderByChild("MenuId").equalTo(categoryId) //like: select * from Foods where MenuId =
         ) {

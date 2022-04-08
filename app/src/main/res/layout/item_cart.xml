@@ -11,8 +11,9 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dp_5"
             android:src="@drawable/img_no_image" />
 
@@ -23,8 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_5"
-            android:textStyle="bold"
-            android:layout_toEndOf="@+id/imageLogo" />
+            android:layout_toEndOf="@+id/imageLogo"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textPrice"

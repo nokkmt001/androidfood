@@ -85,7 +85,7 @@
             app:layout_constraintTop_toBottomOf="@+id/layoutTwo" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcl"
+            android:id="@+id/rclMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

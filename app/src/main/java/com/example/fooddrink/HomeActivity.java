@@ -12,6 +12,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.fooddrink.Model.Category;
 import com.example.fooddrink.ViewHolder.MenuViewHolder;
+import com.example.fooddrink.database.AppApplication;
+import com.example.fooddrink.database.AppPreference;
 import com.example.fooddrink.database.PublicData;
 import com.example.fooddrink.databinding.ActivityHomeBinding;
 import com.example.fooddrink.ui.base.BaseTestActivity;
@@ -32,19 +34,6 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
     public FoodDetailFragment galleryFragment;
     FragmentManager fmManager;
 
-    public void gg() {
-        fmManager = getSupportFragmentManager();
-        homeFragment = new FoodMainFragment();
-        galleryFragment = new FoodDetailFragment("");
-        //init firebase
-        database = PublicData.database ;
-        category = database.getReference("Category");
-        binding.navView.setNavigationItemSelectedListener(this);
-        binding.layoutHeader.imageDrawer.setOnClickListener(this);
-//        LoadMenu();
-        setCheckDefault();
-    }
-
     private void setCheckDefault() {
         onNavigationItemSelected(binding.navView.getMenu().findItem(R.id.nav_menu));
         binding.navView.setCheckedItem(R.id.nav_menu);
@@ -57,33 +46,20 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
 
     @Override
     protected void initView() {
-        gg();
+        fmManager = getSupportFragmentManager();
+        homeFragment = new FoodMainFragment();
+        galleryFragment = new FoodDetailFragment("");
+        //init firebase
+        database = PublicData.database;
+        category = database.getReference("Category");
+        binding.navView.setNavigationItemSelectedListener(this);
+        binding.layoutHeader.imageDrawer.setOnClickListener(this);
+        setCheckDefault();
     }
 
     @Override
     protected void initData() {
 
-    }
-
-    private void LoadMenu() {
-        adapter = new FirebaseRecyclerAdapter<Category,
-                MenuViewHolder>(Category.class, R.layout.menu_item, MenuViewHolder.class, category) {
-            @Override
-            protected void populateViewHolder(MenuViewHolder menuViewHolder, Category category, int i) {
-                menuViewHolder.txtMenuName.setText(category.getName());
-                Picasso.get().load(category.getImage()).into(menuViewHolder.imageView);
-                //Picasso.get().load().into(menuViewHolder.imageView);
-//                Category clickItem = category;
-                menuViewHolder.setInternClickListener((view, position, isLongCick) -> {
-                    //get categoryId and send to new Activity
-                    Intent foodList = new Intent(HomeActivity.this, FoodListDetailActivity.class);
-                    //Because CategoryId is key, so we just get key of this item
-                    foodList.putExtra("CategoryId", adapter.getRef(position).getKey());
-                    startActivity(foodList);
-                });
-            }
-        };
-//        recycler_menu.setAdapter(adapter);
     }
 
     public void setBottomNavigationView(Fragment fmMain, Fragment fragment, String tab) {
@@ -140,6 +116,7 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
                             Intent intent = new Intent(this, SignInActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                            PublicData.clear();
                             finish();
                         });
                 break;
