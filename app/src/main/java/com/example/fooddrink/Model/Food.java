@@ -7,6 +7,8 @@ public class Food implements Serializable {
 
     private String FoodID;
 
+    private Boolean isCheck = true;
+
     private Integer count;
     public Food() {
     }
@@ -82,5 +84,13 @@ public class Food implements Serializable {
 
     public void setCount(Integer count) {
         this.count = count;
+    }
+
+    public Boolean getCheck() {
+        return isCheck;
+    }
+
+    public void setCheck(Boolean check) {
+        isCheck = check;
     }
 }

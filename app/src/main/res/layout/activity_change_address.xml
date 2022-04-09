@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <include
+                android:id="@+id/layoutHeader"
+                layout="@layout/layout_header_map" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           style="@style/Widget.AppCompat.TextView"
+           android:text="Liên hệ"
+           android:paddingTop="@dimen/dp_10"
+           android:paddingBottom="@dimen/dp_10"
+           android:paddingStart="@dimen/dp_10"
+           android:background="@color/color_gray_test"/>
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.TextView"
+            android:text="Liên hệ"
+            android:textAllCaps="true"
+            android:paddingStart="@dimen/dp_10"
+            android:padding="@dimen/size_7"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/colorLine"
+            android:layout_height="0.5dp"/>
+
+        <TextView
+            android:id="@+id/textNumberPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.TextView"
+            android:paddingStart="@dimen/dp_10"
+            android:text="Liên hệ"
+            android:padding="@dimen/size_7"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.TextView"
+            android:text="Địa chỉ"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingStart="@dimen/dp_10"
+            android:background="@color/color_gray_test"/>
+
+        <TextView
+            android:id="@+id/textAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.TextView"
+            android:paddingStart="@dimen/dp_10"
+            android:minLines="3"
+            android:text="Địa chỉ"
+            android:gravity="left|center"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:padding="@dimen/size_7"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintDimensionRatio="H,16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

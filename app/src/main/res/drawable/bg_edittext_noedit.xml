@@ -1,0 +1,37 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_enabled="true" android:state_pressed="true">
+        <shape android:padding="10dp" android:shape="rectangle">
+            <solid android:color="@color/de_fault" />
+            <stroke android:width="@dimen/edittext_border_width" android:color="@color/de_fault" />
+            <corners android:bottomLeftRadius="@dimen/edittext_radius" android:bottomRightRadius="@dimen/edittext_radius" android:topLeftRadius="@dimen/edittext_radius" android:topRightRadius="@dimen/edittext_radius" />
+        </shape>
+    </item>
+    <item android:state_enabled="true" android:state_focused="true">
+        <shape android:padding="10dp" android:shape="rectangle">
+            <solid android:color="@color/de_fault" />
+            <stroke android:width="@dimen/edittext_border_width" android:color="@color/colorLine" />
+            <corners android:bottomLeftRadius="@dimen/edittext_radius" android:bottomRightRadius="@dimen/edittext_radius" android:topLeftRadius="@dimen/edittext_radius" android:topRightRadius="@dimen/edittext_radius" />
+        </shape>
+    </item>
+    <item android:state_enabled="true">
+        <shape android:padding="10dp" android:shape="rectangle">
+            <!--background-->
+            <solid android:color="@color/de_fault" />
+            <!--border-->
+            <stroke android:width="@dimen/edittext_border_width" android:color="@color/colorLine" />
+            <!--radius-->
+            <corners android:bottomLeftRadius="@dimen/edittext_radius" android:bottomRightRadius="@dimen/edittext_radius" android:topLeftRadius="@dimen/edittext_radius" android:topRightRadius="@dimen/edittext_radius" />
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/edittext_radius" />
+            <gradient
+                android:angle="-90"
+                android:endColor="@color/color_edit_text_background_disable"
+                android:startColor="@color/color_edit_text_background_disable" />
+            <stroke android:width="@dimen/edittext_border_width" android:color="@color/colorLine" />
+        </shape>
+    </item>
+</selector>

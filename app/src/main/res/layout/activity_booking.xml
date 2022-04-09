@@ -31,8 +31,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageMain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="@dimen/dp_20"
                     android:layout_marginStart="@dimen/dp_10"
                     android:layout_marginTop="@dimen/dp_5"
                     android:src="@drawable/ic_map_location" />
@@ -52,8 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/layoutImage"
-                android:layout_marginStart="@dimen/dp_30"
-                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginStart="@dimen/dp_35"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +63,7 @@
                     style="@style/Widget.AppCompat.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp_5"
+                    android:drawableEnd="@drawable/ic_arrow_right"
                     android:padding="@dimen/dp_5" />
 
             </LinearLayout>

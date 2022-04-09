@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatEditText xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inputAddress"
+    style="@style/Widget.AppCompat.EditText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_20"
+    android:background="@drawable/table_ripple_radius_5"
+    android:gravity="top"
+    android:padding="@dimen/dp_5"
+    android:hint="Nhập địa chỉ"
+    android:minLines="4"
+    android:scrollbars="vertical"
+    android:singleLine="false"
+    tools:ignore="RtlSymmetry" />
+

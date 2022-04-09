@@ -11,6 +11,7 @@ import com.example.fooddrink.ui.base.BaseLMAdapter;
 
 public class BookingAdapter extends BaseLMAdapter<Food, ItemBookingBinding> {
     public Context context;
+
     public BookingAdapter(Context context) {
         super(context);
         this.context = context;
@@ -20,8 +21,11 @@ public class BookingAdapter extends BaseLMAdapter<Food, ItemBookingBinding> {
     public void setupViews(ItemBookingBinding viewMain, Food item, int position) {
         Glide.with(context)
                 .load(item.getImage())
-                .override(300,300)
-                .into( viewMain.imageLogo);
+                .override(300, 300)
+                .into(viewMain.imageLogo);
+        viewMain.textPrice.setText(item.getPrice());
+        viewMain.textTitle.setText(item.getName());
+        viewMain.textCount.setText(item.getCount().toString());
     }
 
     @Override

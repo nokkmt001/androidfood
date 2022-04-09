@@ -28,13 +28,6 @@ public class CartActivity extends BaseTestActivity<ActivityCartBinding> {
         adapter = new CartAdapter(this);
         binding.rylCart.setLayoutManager(new LinearLayoutManager(this));
         binding.rylCart.setAdapter(adapter);
-        binding.buttonOK.setOnClickListener(view -> {
-            if (adapter.getListAllData().size()==0) return;
-            AppPreference.saveListFoodBooking(adapter.getListAllData());
-            Intent intent = new Intent(this, BookingActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        });
 
         adapter.setOnClick((view, position) -> {
             Food info = adapter.getItem(position);
@@ -57,6 +50,16 @@ public class CartActivity extends BaseTestActivity<ActivityCartBinding> {
                 default:
                     break;
             }
+        });
+        binding.layoutHeader.imageDrawer.setOnClickListener(view -> finish());
+
+        binding.textOk.setOnClickListener(view -> {
+            if (adapter.getListAllData().size()==0) return;
+            AppPreference.saveListFoodBooking(adapter.getListAllData());
+            Intent intent = new Intent(this, BookingActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            this.finish();
         });
     }
 

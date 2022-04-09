@@ -10,6 +10,7 @@ import com.example.fooddrink.database.PublicData;
 import com.example.fooddrink.databinding.ActivityFoodDetailBinding;
 import com.example.fooddrink.ui.base.BaseTestActivity;
 import com.example.fooddrink.ui.cart.CartActivity;
+import com.example.fooddrink.utils.ViewImageActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -67,6 +68,7 @@ public class FoodDetailActivity extends BaseTestActivity<ActivityFoodDetailBindi
             food.setFoodID(key);
             PublicData.listDataFoodBookingNow.add(food);
             Intent intent = new Intent(this, CartActivity.class);
+//            Intent intent = new Intent(this, CartActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         });
@@ -77,6 +79,14 @@ public class FoodDetailActivity extends BaseTestActivity<ActivityFoodDetailBindi
             startActivity(intent);
         });
         binding.layoutHeader.imageDrawer.setOnClickListener(view -> finish());
+
+        binding.imageMain.setOnClickListener(view -> {
+            if (food==null) return;
+            Intent intent = new Intent(this, ViewImageActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("PATHIMAGE",food.getImage());
+            startActivity(intent);
+        });
     }
 
     @Override

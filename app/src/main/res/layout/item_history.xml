@@ -13,8 +13,8 @@
             android:layout_width="@dimen/dp_60"
             android:layout_height="@dimen/dp_60"
             android:layout_centerVertical="true"
-            android:scaleType="fitXY"
             android:layout_marginStart="@dimen/dp_5"
+            android:scaleType="fitXY"
             android:src="@drawable/img_no_image" />
 
         <TextView
@@ -39,50 +39,51 @@
             android:layout_toEndOf="@+id/imageLogo"
             android:textColor="@color/Red_red" />
 
-        <LinearLayout
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/layoutView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_05"
+        android:layout_below="@+id/layoutMain"
+        android:background="@color/colorLine" />
+
+    <RelativeLayout
+        android:id="@+id/layoutPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutView"
+        android:layout_marginTop="@dimen/dp_5"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/Widget.AppCompat.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textPrice"
-            android:layout_marginStart="@dimen/dp_10"
+            android:layout_margin="@dimen/dp_5"
+            android:layout_marginStart="@dimen/dp_5"
             android:layout_marginTop="@dimen/dp_5"
-            android:layout_toEndOf="@+id/imageLogo"
-            android:orientation="horizontal">
+            android:layout_marginEnd="@dimen/dp_5"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:layout_toStartOf="@+id/textTotalPrice"
+            android:text="Thành tiền:" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageMinus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="@dimen/dp_10"
-                android:src="@drawable/ic_minus" />
-
-            <TextView
-                android:id="@+id/textCount"
-                style="@style/Widget.AppCompat.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:minWidth="@dimen/dp_50"
-                android:textSize="@dimen/textSize_14"
-                android:textColor="@color/Red_red" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="@dimen/dp_10"
-                android:src="@drawable/ic_add" />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textTotalPrice"
+            style="@style/Widget.AppCompat.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/dp_5"
+            android:text="Thành tiền"
+            android:textColor="@color/Red_red" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_05"
-        android:layout_below="@+id/layoutMain"
-        android:background="@color/Black" />
+        android:layout_below="@+id/layoutPrice"
+        android:background="@color/colorLine" />
 
 </RelativeLayout>

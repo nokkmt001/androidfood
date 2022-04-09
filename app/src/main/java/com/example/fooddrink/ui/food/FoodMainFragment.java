@@ -19,15 +19,14 @@ import com.example.fooddrink.ui.base.BaseFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 public class FoodMainFragment extends BaseFragment<FragmentFoodMainBinding> {
     FirebaseDatabase database;
     DatabaseReference foodList;
     String categoryId = "";
     DatabaseReference category;
-
     FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
+
     @Override
     public FragmentFoodMainBinding getViewBinding(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return FragmentFoodMainBinding.inflate(inflater, container, false);
@@ -35,9 +34,22 @@ public class FoodMainFragment extends BaseFragment<FragmentFoodMainBinding> {
 
     @Override
     protected void initView() {
-        database = PublicData.database ;
+        database = PublicData.database;
         category = database.getReference("Category");
-        binding.recyclerFood.setLayoutManager(new GridLayoutManager(getContext(),2));
+        binding.recyclerFood.setLayoutManager(new GridLayoutManager(getContext(), 2));
+//        category.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                List<Category> list = new ArrayList<>();
+//                list.add(snapshot.getValue(Category.class));
+//                System.out.println(new Gson().toJson(list) + "1111111111111111111111111111");
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
     }
 
@@ -49,10 +61,10 @@ public class FoodMainFragment extends BaseFragment<FragmentFoodMainBinding> {
                 @Override
                 protected void populateViewHolder(MenuViewHolder menuViewHolder, Category category, int i) {
                     menuViewHolder.txtMenuName.setText(category.getName());
-                Glide.with(getContext())
-                        .load(category.getImage())
-                        .error(R.drawable.img_no_image)
-                        .into(menuViewHolder.imageView);
+                    Glide.with(getContext())
+                            .load(category.getImage())
+                            .error(R.drawable.img_no_image)
+                            .into(menuViewHolder.imageView);
                     Category clickItem = category;
                     menuViewHolder.setInternClickListener((view, position, isLongCLick) -> {
                         Intent foodList = new Intent(getContext(), FoodListDetailActivity.class);
@@ -65,10 +77,9 @@ public class FoodMainFragment extends BaseFragment<FragmentFoodMainBinding> {
                 }
             };
             binding.recyclerFood.setAdapter(adapter);
-        } catch (Exception e){
+        } catch (Exception e) {
 
         }
-
     }
 
     @Override
@@ -81,6 +92,7 @@ public class FoodMainFragment extends BaseFragment<FragmentFoodMainBinding> {
         getActivity().getSupportFragmentManager().beginTransaction()
 //                .add(R.id.frame_container, null, "three")
                 .replace(R.id.frame_container, fragment)
+                .addToBackStack("12")
                 .hide(this)
                 .addToBackStack(null)
                 .commit();

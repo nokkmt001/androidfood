@@ -8,6 +8,7 @@ import com.example.fooddrink.databinding.ActivityMainBinding;
 import com.example.fooddrink.ui.base.BaseTestActivity;
 
 public class MainActivity extends BaseTestActivity<ActivityMainBinding> {
+
     @Override
     public ActivityMainBinding getViewBinding() {
         return ActivityMainBinding.inflate(getLayoutInflater());

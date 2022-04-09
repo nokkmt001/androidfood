@@ -12,9 +12,9 @@
     </include>
 
     <RelativeLayout
+        android:id="@+id/layoutMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/layoutMain"
         android:layout_below="@+id/layoutHeader">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -43,7 +43,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_5"
                 android:layout_marginTop="@dimen/dp_5"
-                android:layout_marginEnd="@dimen/dp_5">
+                android:layout_marginEnd="@dimen/dp_5"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/Widget.AppCompat.TextView"
@@ -67,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_5"
                 android:layout_marginTop="@dimen/dp_5"
-                android:layout_marginEnd="@dimen/dp_5">
+                android:layout_marginEnd="@dimen/dp_5"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/Widget.AppCompat.TextView"
@@ -91,7 +93,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_5"
                 android:layout_marginTop="@dimen/dp_5"
-                android:layout_marginEnd="@dimen/dp_5">
+                android:layout_marginEnd="@dimen/dp_5"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/Widget.AppCompat.TextView"
@@ -110,17 +113,74 @@
 
             </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:button="@null"
+                    android:clickable="true"
+                    android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_5" />
+
+                <LinearLayout
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Widget.AppCompat.TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tổng thanh toán:" />
+
+                    <TextView
+                        style="@style/Widget.AppCompat.TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Red_red" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textOk"
+                    style="@style/Widget.AppCompat.TextView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/bg_button_light"
+                    android:gravity="center"
+                    android:text="text"
+                    android:textColor="@color/de_fault"
+                    android:textSize="@dimen/textSize_20" />
+
+            </LinearLayout>
+
             <Button
                 android:id="@+id/buttonOK"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_button"
                 android:layout_margin="@dimen/dp_5"
+                android:background="@drawable/custom_button"
+                android:text="@string/text_order"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="@string/text_order" />
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -132,7 +192,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:text="@string/title_empty_cart"/>
+        android:text="@string/title_empty_cart"
+        android:visibility="gone" />
 
 </RelativeLayout>

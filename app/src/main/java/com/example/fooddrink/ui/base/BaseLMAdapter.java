@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
+import com.example.fooddrink.Model.Food;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public abstract class BaseLMAdapter<T, B extends ViewBinding> extends RecyclerVi
     protected B binding;
     ArrayList<T> listData = new ArrayList<>();
     Context context;
+    public List<Food> listChose = new ArrayList<>();
 
     public abstract void setupViews(B b, T item, int position);
 

@@ -10,8 +10,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageLogo"
-            android:layout_width="@dimen/dp_40"
-            android:layout_height="@dimen/dp_40"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dp_5"
             android:scaleType="fitXY"
@@ -41,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textCategory"
+            android:layout_marginStart="@dimen/dp_10"
             android:layout_toEndOf="@+id/imageLogo"
             android:orientation="horizontal">
 
@@ -49,16 +50,23 @@
                 style="@style/Widget.AppCompat.TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginBottom="@dimen/dp_5"
                 android:textColor="@color/Red_red"
                 android:textSize="@dimen/textSize_12" />
 
             <TextView
+                android:id="@+id/textCount"
                 style="@style/Widget.AppCompat.TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:layout_toEndOf="@+id/textPrice"
+                android:gravity="end"
+                android:textSize="@dimen/textSize_11" />
 
         </RelativeLayout>
 

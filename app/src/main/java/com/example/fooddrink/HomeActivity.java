@@ -19,6 +19,7 @@ import com.example.fooddrink.databinding.ActivityHomeBinding;
 import com.example.fooddrink.ui.base.BaseTestActivity;
 import com.example.fooddrink.ui.food.FoodDetailFragment;
 import com.example.fooddrink.ui.food.FoodMainFragment;
+import com.example.fooddrink.ui.history.HistoryFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
@@ -28,10 +29,10 @@ import com.squareup.picasso.Picasso;
 public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
     DatabaseReference category;
-    Fragment fmActive, fragment1, fragment2, fragment3;
+    Fragment fmActive, fragment1, fragment2;
     FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
     public FoodMainFragment homeFragment;
-    public FoodDetailFragment galleryFragment;
+    public HistoryFragment galleryFragment;
     FragmentManager fmManager;
 
     private void setCheckDefault() {
@@ -48,7 +49,7 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
     protected void initView() {
         fmManager = getSupportFragmentManager();
         homeFragment = new FoodMainFragment();
-        galleryFragment = new FoodDetailFragment("");
+        galleryFragment = new HistoryFragment();
         //init firebase
         database = PublicData.database;
         category = database.getReference("Category");
@@ -103,11 +104,9 @@ public class HomeActivity extends BaseTestActivity<ActivityHomeBinding> implemen
                 setBottomNavigationView(fragment1, homeFragment, "1");
                 fragment1 = homeFragment;
                 break;
-            case R.id.nav_cart:
+            case R.id.nav_orders:
                 setBottomNavigationView(fragment2, galleryFragment, "2");
                 fragment2 = galleryFragment;
-                break;
-            case R.id.nav_orders:
                 break;
             case R.id.nav_log_out:
                 alertDialog("ĐĂNG XUẤT", "Bạn có chắc muốn đăng xuất ứng dụng?",

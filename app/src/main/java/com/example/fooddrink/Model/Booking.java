@@ -5,19 +5,16 @@ public class Booking {
     private String Datetime;
     private String MenuId;
     private String address;
-    private String amount;
     private String employee;
 
-
-    private String isFinish;
+    private Integer isFinish;
     private String numberPhone;
-    private String price;
+    private Integer price;
 
-    public Booking(String datetime, String menuId, String address, String amount, String employee, String isFinish, String numberPhone, String price, String userName) {
+    public Booking(String datetime, String menuId, String address, String employee, Integer isFinish, String numberPhone, Integer price, String userName) {
         this.Datetime = datetime;
         this.MenuId = menuId;
         this.address = address;
-        this.amount = amount;
         this.employee = employee;
         this.isFinish = isFinish;
         this.numberPhone = numberPhone;
@@ -49,14 +46,6 @@ public class Booking {
         this.address = address;
     }
 
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
     public String getEmployee() {
         return employee;
     }
@@ -65,11 +54,11 @@ public class Booking {
         this.employee = employee;
     }
 
-    public String getIsFinish() {
+    public Integer getIsFinish() {
         return isFinish;
     }
 
-    public void setIsFinish(String isFinish) {
+    public void setIsFinish(Integer isFinish) {
         this.isFinish = isFinish;
     }
 
@@ -81,11 +70,11 @@ public class Booking {
         this.numberPhone = numberPhone;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

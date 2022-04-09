@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDrink">
         <activity
+            android:name=".utils.ViewImageActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.booking.BookingActivity"
             android:exported="false" />
         <activity
@@ -60,6 +63,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.address.ChangeAddressActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.address.PlaceActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
 
