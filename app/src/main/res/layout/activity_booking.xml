@@ -106,7 +106,8 @@
         android:layout_marginEnd="@dimen/dp_5"
         android:layout_marginBottom="@dimen/dp_5"
         android:background="@drawable/custom_button"
+        android:text="@string/text_order"
         android:textColor="@color/de_fault"
-        android:text="@string/text_order" />
+        android:textSize="@dimen/textSize_20" />
 
 </RelativeLayout>

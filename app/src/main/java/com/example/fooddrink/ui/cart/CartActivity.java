@@ -1,5 +1,6 @@
 package com.example.fooddrink.ui.cart;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.View;
 
@@ -21,14 +22,15 @@ public class CartActivity extends BaseTestActivity<ActivityCartBinding> {
         return ActivityCartBinding.inflate(getLayoutInflater());
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void initView() {
         adapter = new CartAdapter(this);
         binding.rylCart.setLayoutManager(new LinearLayoutManager(this));
         binding.rylCart.setAdapter(adapter);
         binding.buttonOK.setOnClickListener(view -> {
-            if (PublicData.listDataFoodBooking == null) return;
-            AppPreference.saveListFoodBooking(PublicData.listDataFoodBooking);
+            if (adapter.getListAllData().size()==0) return;
+            AppPreference.saveListFoodBooking(adapter.getListAllData());
             Intent intent = new Intent(this, BookingActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

@@ -2,9 +2,9 @@ package com.example.fooddrink.ui.cart;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.fooddrink.Model.Food;
 import com.example.fooddrink.databinding.ItemCartBinding;
 import com.example.fooddrink.ui.base.BaseLMAdapter;
@@ -13,21 +13,31 @@ public class CartAdapter extends BaseLMAdapter<Food, ItemCartBinding> {
 
     OnClick onClick;
 
+    Context mContext;
+
     public void setOnClick(OnClick onClick) {
         this.onClick = onClick;
     }
 
     public CartAdapter(Context context) {
         super(context);
+        this.mContext = context;
     }
 
     @Override
     public void setupViews(ItemCartBinding binding, Food item, int position) {
-        binding.textTitle.setText("gfgfgfg");
+        binding.textTitle.setText(item.getName());
+        Glide.with(mContext)
+                .load(item.getImage())
+                .override(300, 300)
+                .into(binding.imageLogo);
+        binding.textPrice.setText(item.getPrice());
 
-        binding.imageAdd.setOnClickListener(view -> onClick.onClick(view,position));
+        binding.textCount.setText(item.getCount().toString());
 
-        binding.imageMinus.setOnClickListener(view -> onClick.onClick(view,position));
+        binding.imageAdd.setOnClickListener(view -> onClick.onClick(view, position));
+
+        binding.imageMinus.setOnClickListener(view -> onClick.onClick(view, position));
     }
 
     @Override
